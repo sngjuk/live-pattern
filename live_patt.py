@@ -1,8 +1,6 @@
 import random
 from pydub import AudioSegment
 from pydub.playback import play
-# pip install pydub
-# brew install ffmpeg
 
 nl = ['RESET_voc.flac', 'RESET_inst.flac', 'RESET_live.mp3']
 
