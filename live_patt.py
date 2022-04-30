@@ -21,7 +21,8 @@ pl = [
     '4:05:556',
     '4:17:974'
   ]
-#ml = [1,2,1,0,1,1,2,0,0,0,1]
+rate_list = [0.93, 0.97, 1.0, 1.03, 1.11]
+
 
 def mils(t):
   second = 1000
@@ -39,6 +40,10 @@ def cut(song, st, ed):
 while True:
   rl = AudioSegment.empty()
   for i in range(len(pl) - 1):
-    rl += cut(sl[random.randint(0, len(nl) - 1)], pl[i], pl[i+1])
-    #rl += cut(sl[ml[i]], pl[i], pl[i+1])
-  play(rl)
+    ridx = random.randint(0, len(nl) - 1)
+    rl += cut(sl[ridx], pl[i], pl[i+1])
+
+  rate = rate_list[random.randint(0, len(rate_list) - 1)]
+  sound = rl._spawn(rl.raw_data, overrides={'frame_rate': int(rl.frame_rate * rate)})
+  print('rate:', rate)
+  play(sound)
